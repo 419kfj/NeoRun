@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\\name{NeoRun}\n\\alias{NeoRun}\n\\title{NeoRun backup data conversion}\n\\usage{\nfname <- \"20170801-20170801.csv\"\n.res <- NeoRun_data(fname)\n.res$base\n.res$Lap\n.res$Graph\n}\n\\description{\nset fname as backup file\nRun NeoRun_data and get the results.\n.res$base :: basic information of the event\n.res$Lap :: Get Lap data table\n.res$Graph :: Graph plot related table\n.res$GPS :: on the check. might have bug.\n}\n\\examples{\nfname <- \"20170801-20170801.csv\"\n.res <- NeoRun_data(fname)\n.res$base\n.res$Lap\n.res$Graph\n}\n",
+    "created" : 1502429459896.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2786718229",
+    "id" : "533127EC",
+    "lastKnownWriteTime" : 1502429978,
+    "last_content_update" : 1502429978873,
+    "path" : "~/Dropbox/RStudio/NeoRun/NeoRun/man/NeoRun.Rd",
+    "project_path" : "man/NeoRun.Rd",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_doc"
+}
