@@ -2,11 +2,7 @@
 \alias{NeoRun}
 \title{NeoRun backup data conversion}
 \usage{
-fname <- "20170801-20170801.csv"
-.res <- NeoRun_data(fname)
-.res$base
-.res$Lap
-.res$Graph
+.res <- NeoRun_data(fname,Memo)
 }
 \description{
 set fname as backup file
@@ -15,11 +11,17 @@ Run NeoRun_data and get the results.
 .res$Lap :: Get Lap data table
 .res$Graph :: Graph plot related table
 .res$GPS :: on the check. might have bug.
+.res$Tag :: part of csv file as measured data
+.res$Memo :: any memo
 }
 \examples{
-fname <- "20170801-20170801.csv"
-.res <- NeoRun_data(fname)
+library(NeoRun)
+fname <- "inst/extdata/20170801-20170801.csv"
+memo <- "Weekend Run"
+.res <- NeoRun_data(fname,memo)
 .res$base
 .res$Lap
 .res$Graph
+.res$Tag
+.res$Memo
 }
