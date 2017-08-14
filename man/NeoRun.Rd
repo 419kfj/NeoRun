@@ -11,6 +11,7 @@ Run NeoRun_data and get the results.
 .res$Lap :: Get Lap data table
 .res$Graph :: Graph plot related table
 .res$GPS :: on the check. might have bug.
+<<<<<<< HEAD
 .res$Tag :: part of csv file as measured data
 .res$Memo :: any memo
 }
@@ -24,4 +25,13 @@ memo <- "Weekend Run"
 .res$Graph
 .res$Tag
 .res$Memo
+=======
+}
+\examples{
+fname <- "20170801-20170801.csv"
+.res <- NeoRun_data(fname)
+.res$base
+.res$Lap
+.res$Graph
+>>>>>>> 3c96888c859b22235d47b2e66ba410e1396f8d3b
 }
