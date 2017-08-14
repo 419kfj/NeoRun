@@ -1,5 +1,7 @@
 # NeoRun backup data conversion!
 #
+# 2017-08-14 kazuo fujimoto
+# kazuo.fujimoto2007@gmail.com
 
 # Unit of data
 # - GrapDistance m
@@ -110,7 +112,6 @@ NeoRun_data <- function(fname,runmemo=NULL){
   ## GPSSpeed / 7
   GPSstring[[1]][7] %>% str_split(",") -> Gps_tmp
   str_split(Gps_tmp[[1]][2],";") %>% unlist() %>% as.numeric() -> GPSSpeed
-
 
   # GpsStatus     8
   GPSstring[[1]][8] %>% str_split(",") -> Gps_tmp
