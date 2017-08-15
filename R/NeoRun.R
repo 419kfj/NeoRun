@@ -20,7 +20,7 @@
 #res$Graph
 
 NeoRun_data <- function(fname,runmemo=NULL){
-  library(tidyverse)
+  library(dplyr)
   library(readr)
   library(stringr)
 
@@ -56,12 +56,12 @@ NeoRun_data <- function(fname,runmemo=NULL){
   colnames(.d.Graph) <- cnames
   rownames(.d.Graph) <- 1:nrow(.d.Graph)
   .d.Graph.Interval
-  .d.Graph %>% tbl_df() -> .d.Graph.td ###%>% mutate(.d.Date[1,1])
+  .d.Graph %>% tbl_df() %>% cbind(.,Tag=tag) -> .d.Graph.td ###%>% mutate(.d.Date[1,1])
 
   ## Get LAP data
   begin <- p.LapData + 1
   end <- p.TrainingSettingData-1
-  .d[begin:end] %>% read.csv(text=.) -> .d.lap # AdvR p24
+  .d[begin:end] %>% read.csv(text=.) %>% tbl_df() %>% mutate(Tag=tag) -> .d.lap # AdvR p24
 
   ## Get GPS String
   # [GPSData]     GPSstring[]
@@ -117,7 +117,8 @@ NeoRun_data <- function(fname,runmemo=NULL){
   GPSstring[[1]][8] %>% str_split(",") -> Gps_tmp
   str_split(Gps_tmp[[1]][2],";") %>% unlist() %>% as.numeric() -> GPSStatus
 
-  GPS <- data.frame(GPSTime,GPSlatitude,GPSLongitude,GPSAltitude,GPSDirection,GPSSpeed,GPSStatus)
+  GPS <- data.frame(GPSTime,GPSlatitude,GPSLongitude,GPSAltitude,GPSDirection,
+                    GPSSpeed,GPSStatus) %>% mutate(Tag=tag)
   #GPS %>% tbl_df()
 
   return(list(base=.d[3],Graph=.d.Graph.td,GPS=GPS,Lap=.d.lap,Tag=tag,Memo=runmemo))
