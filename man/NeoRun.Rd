@@ -25,7 +25,6 @@ memo <- "Weekend Run"
 .res$Graph
 .res$Tag
 .res$Memo
-=======
 }
 \examples{
 fname <- "20170801-20170801.csv"
