@@ -33,6 +33,9 @@ NeoRunから、backup形式でダウンロードしたファイル（csv）を�
 library(psych)
 library(tidyverse)
 library(NeoRun)
+```
+
+```{r}
 # sample data としてついてます。"20170801-20170801.csv"
 
 fname <- "inst/extdata/20170801-20170801.csv"
@@ -52,13 +55,19 @@ res$Graph %>% select("GraphDistance","GraphSpeed","HeartRate") %>%
   pairs.panels(main=res$base)
 ```
 
+# 宇都宮マラソン2016のデータ
 ```{r}
 fname = "inst/extdata/20151115-20151115.csv"
 res <-  NeoRun_data(fname)
 ```
+
 ```{r}
 names(res$Graph)
 res$Graph %>% select("GraphDistance","GraphSpeed","GraphPitch","GraphStride","HeartRate") %>%
   pairs.panels(main=res$base)
+```
+
+```{r}
+res$Graph %>% select("HeartRate") %>% unlist() %>% hist()
 ```
 
