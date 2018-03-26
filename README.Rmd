@@ -30,14 +30,25 @@ devtools::install_github("419kfj/NeoRun")
 NeoRunから、backup形式でダウンロードしたファイル（csv）を入力としてRのデータフレームに変換します。
 
 ```{r example}
-
+library(psych)
+library(tidyverse)
+library(NeoRun)
 # sample data としてついてます。"20170801-20170801.csv"
 
 fname <- "inst/extdata/20170801-20170801.csv"
 res <-  NeoRun_data(fname)
 
-res$Lap
-res$base
-res$Graph
-
+res$base # Data Description
+names(res$Lap) # 要約されたLapデータ
+nrow(res$Lap)
+names(res$Graph) # GPS data
+nrow(res$Graph)
+summary(res$Graph)
 ```
+
+```{r}
+names(res$Graph)
+res$Graph %>% select("GraphDistance","GraphSpeed","HeartRate") %>%
+  pairs.panels(main=res$base)
+```
+
