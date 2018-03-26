@@ -1,0 +1,43 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# NeoRun
+
+EPSON のSF810 がNeoRunにuploadしたデータのbackup形式をもとに、分析をするツール
+
+## Installation
+
+以下のようにしてインストールできます。
+
+```{r gh-installation, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("419kfj/NeoRun")
+```
+
+## Example
+
+NeoRunから、backup形式でダウンロードしたファイル（csv）を入力としてRのデータフレームに変換します。
+
+```{r example}
+
+sample data = "20170801-20170801.csv"
+
+fname <- "inst/extdata/20170801-20170801.csv"
+res <-  NeoRun_data(fname)
+
+res$Lap
+res$base
+res$Graph
+
+```
