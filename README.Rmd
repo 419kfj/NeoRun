@@ -52,3 +52,13 @@ res$Graph %>% select("GraphDistance","GraphSpeed","HeartRate") %>%
   pairs.panels(main=res$base)
 ```
 
+```{r}
+fname = "inst/extdata/20151115-20151115.csv"
+res <-  NeoRun_data(fname)
+```
+```{r}
+names(res$Graph)
+res$Graph %>% select("GraphDistance","GraphSpeed","GraphPitch","GraphStride","HeartRate") %>%
+  pairs.panels(main=res$base)
+```
+
