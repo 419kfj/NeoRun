@@ -31,7 +31,7 @@ NeoRunから、backup形式でダウンロードしたファイル（csv）を�
 
 ```{r example}
 
-sample data = "20170801-20170801.csv"
+# sample data としてついてます。"20170801-20170801.csv"
 
 fname <- "inst/extdata/20170801-20170801.csv"
 res <-  NeoRun_data(fname)
