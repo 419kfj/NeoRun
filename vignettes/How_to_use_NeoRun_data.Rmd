@@ -20,7 +20,7 @@ library(NeoRun)
 "20170801-20170801.csv"^[A これはNeoRunのバックアップ機能を用いて保存したCSVデータそのものです。]
 
 ```{r message=FALSE,warning=FALSE}
-fname <- "../inst/extdata/20170801-20170801.csv"
+fname <- "./inst/extdata/20170801-20170801.csv"
 res <-  NeoRun_data(fname)
 
 res$base # Data Description
@@ -39,7 +39,7 @@ res$Graph %>% select("GraphDistance","GraphSpeed","HeartRate") %>%
 
 # 宇都宮マラソン2016のデータ
 ```{r message=FALSE,warning=FALSE}
-fname = "../inst/extdata/20151115-20151115.csv"
+fname = "./inst/extdata/20151115-20151115.csv"
 res <-  NeoRun_data(fname)
 ```
 
