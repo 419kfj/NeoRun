@@ -1,0 +1,52 @@
+---
+title: "EPSON NeoRun data converterの使い方"
+author: "kazuo.fujimoto2007@gmail.com"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r example,warning=FALSE,message=FALSE}
+library(psych)
+library(tidyverse)
+library(NeoRun)
+```
+
+# sample data を読み込み、datafarmeに変換する
+
+"20170801-20170801.csv"^[A これはNeoRunのバックアップ機能を用いて保存したCSVデータそのものです。]
+
+```{r message=FALSE,warning=FALSE}
+fname <- "../inst/extdata/20170801-20170801.csv"
+res <-  NeoRun_data(fname)
+
+res$base # Data Description
+names(res$Lap) # 要約されたLapデータ
+nrow(res$Lap)
+names(res$Graph) # GPS data
+nrow(res$Graph)
+summary(res$Graph)
+```
+
+```{r fig.height=6,fig.width=6}
+names(res$Graph)
+res$Graph %>% select("GraphDistance","GraphSpeed","HeartRate") %>%
+  pairs.panels(main=res$base)
+```
+
+# 宇都宮マラソン2016のデータ
+```{r message=FALSE,warning=FALSE}
+fname = "../inst/extdata/20151115-20151115.csv"
+res <-  NeoRun_data(fname)
+```
+
+```{r fig.width=7,fig.height=7}
+names(res$Graph)
+res$base %>% str_split(",") %>% unlist %>% .[2] %>% paste(.,"2016") -> title
+res$Graph %>% select("GraphDistance","GraphSpeed","GraphPitch","GraphStride","HeartRate") %>%
+  pairs.panels(main=title)
+```
+
