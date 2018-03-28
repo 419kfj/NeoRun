@@ -2,17 +2,22 @@
 title: "EPSON NeoRun data converterの使い方"
 author: "kazuo.fujimoto2007@gmail.com"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Vignette Title}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output: 
+  html_document:
+    keep_md: true
+    self_contained: true
 ---
 
 ```{r example,warning=FALSE,message=FALSE}
 library(psych)
 library(tidyverse)
 library(NeoRun)
+# rmarkdown::html_vignette
+#vignette: >
+#  %\VignetteIndexEntry{Vignette Title}
+#  %\VignetteEngine{knitr::rmarkdown}
+#  %\VignetteEncoding{UTF-8}
+
 ```
 
 # sample data を読み込み、datafarmeに変換する
