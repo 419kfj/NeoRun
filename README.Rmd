@@ -71,3 +71,8 @@ res$Graph %>% select("GraphDistance","GraphSpeed","GraphPitch","GraphStride","He
 res$Graph %>% select("HeartRate") %>% unlist() %>% hist()
 ```
 
+## Lap Data 表を取得
+```{r}
+knitr::kable(lap_table(fname),caption = "宇都宮マラソン2016")
+```
+

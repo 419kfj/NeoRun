@@ -144,15 +144,26 @@ NeoRun_data <- function(fname,runmemo=NULL){
 
 #fname="20180401-20180401.csv"
 lap_table <- function(fname){
-.dd <- NeoRun_data(fname)
-.d <- .dd$Lap
-names(.d)[1:18] <- c("No.","EndPoint","Time",
+  .dd <- NeoRun_data(fname)
+  .d <- .dd$Lap
+  names(.d)[1:18] <- c("No.","EndPoint","Time",
                      "距離","カロリー","平均ペース",
                      "平均速度","平均ピッチ","平均ストライド",
                      "Kind","Step","SplitTime",
                      "SplitDist","登り","下り",
                      "MaxHR","MinHR","AveHR")
 
-.d %>% select(1,3,8,9,16:18) %>% mutate(Time=paste(Time %/% 60,":",Time %% 60,sep="")) -> .res
-return(.res)
+  .d %>% select(1,3,8,9,16:18) %>%
+    mutate(Time=paste(Time %/% 60,":",Time %% 60,sep="")) -> .res
+  return(.res)
 }
+
+##
+# Date to fname
+#
+# .dd = "2018-04-01"
+# res <- Date2fname(.dd)
+# res    "20180401-20180401.csv"
+
+library(stringr)
+.dd %>% str_replace_all("-","") %>% paste(.,"-",.,".csv",sep="")
