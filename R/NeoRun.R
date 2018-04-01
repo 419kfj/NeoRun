@@ -123,3 +123,23 @@ NeoRun_data <- function(fname,runmemo=NULL){
 
   return(list(base=.d[3],Graph=.d.Graph.td,GPS=GPS,Lap=.d.lap,Tag=tag,Memo=runmemo))
 }
+
+####
+# Make Lap summary Table
+#
+# 2018-04-01
+
+#fname="20180401-20180401.csv"
+lap_table <- function(fname){
+.dd <- NeoRun_data(fname)
+.d <- .dd$Lap
+names(.d)[1:18] <- c("No.","EndPoint","Time",
+                     "距離","カロリー","平均ペース",
+                     "平均速度","平均ピッチ","平均ストライド",
+                     "Kind","Step","SplitTime",
+                     "SplitDist","登り","下り",
+                     "MaxHR","MinHR","AveHR")
+
+.d %>% select(1,3,8,9,16:18) %>% mutate(Time=paste(Time %/% 60,":",Time %% 60,sep="")) -> .res
+return(.res)
+}
