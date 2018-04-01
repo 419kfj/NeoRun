@@ -24,7 +24,7 @@ NeoRun_data <- function(fname,runmemo=NULL){
   library(readr)
   library(stringr)
 
-  ## Read CSV data from Backup
+  ## Read CSV data from Backup fname="~/Dropbox/RStudio/RunNeorun/20180401-20180401.csv"
   .d <- read_lines(fname,locale=locale(encoding="CP932"))
   tag <- substr(str_split(fname,"/")[[1]][length(str_split(fname,"/")[[1]])],1,8)
   for(i in 1:length(.d)){
@@ -37,12 +37,18 @@ NeoRun_data <- function(fname,runmemo=NULL){
     if(.d[i] == "[[end]]") p.end = i
   }
   ## Read basic Info
+  .d.TrainingMemo <- read_csv(fname,locale=locale(encoding="CP932"),
+                              skip=5,n_max = 1,col_names = TRUE)
+
+  .d.TrainingData <- read_csv(fname,locale=locale(encoding="CP932"),
+                              skip=8,n_max = 1,col_names = TRUE)
+
   .d.TrainingName <- read_csv(fname,locale=locale(encoding="CP932"),
                               skip=2,n_max = 1,col_names = FALSE)
-  .d.TrainingName
+#  .d.TrainingName
   .d.TrainingInfo <- read_csv(fname,locale=locale(encoding="CP932"),
                               skip=5,n_max = 1,col_names = TRUE)
-  .d.TrainingInfo
+#  .d.TrainingInfo
   .d.TrainingInfo %>% select(StartDay,StartTime,EndDay,EndTime) -> .d.Date
   # get Graph Data
   .d.Graph.Interval <- read_csv(fname,locale=locale(encoding="CP932"),
@@ -121,7 +127,14 @@ NeoRun_data <- function(fname,runmemo=NULL){
                     GPSSpeed,GPSStatus) %>% mutate(Tag=tag)
   #GPS %>% tbl_df()
 
-  return(list(base=.d[3],Graph=.d.Graph.td,GPS=GPS,Lap=.d.lap,Tag=tag,Memo=runmemo))
+  return(list(base=.d[3],
+              Graph=.d.Graph.td,
+              GPS=GPS,
+              Lap=.d.lap,
+              Tag=tag,
+              Memo=runmemo,
+              TrainMemo = .d.TrainingMemo,
+              TrainData = .d.TrainingData))
 }
 
 ####
