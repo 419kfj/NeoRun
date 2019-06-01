@@ -20,9 +20,9 @@
 #res$Graph
 
 NeoRun_data <- function(fname,runmemo=NULL){
-  library(dplyr)
-  library(readr)
-  library(stringr)
+#  library(dplyr)
+#  library(readr)
+#  library(stringr)
 
   ## Read CSV data from Backup fname="~/Dropbox/RStudio/RunNeorun/20180401-20180401.csv"
   .d <- read_lines(fname,locale=locale(encoding="CP932"))
@@ -39,7 +39,6 @@ NeoRun_data <- function(fname,runmemo=NULL){
   ## Read basic Info
   .d.TrainingMemo <- read_csv(fname,locale=locale(encoding="CP932"),
                               skip=5,n_max = 1,col_names = TRUE)
-
   .d.TrainingData <- read_csv(fname,locale=locale(encoding="CP932"),
                               skip=8,n_max = 1,col_names = TRUE)
 
@@ -158,6 +157,17 @@ lap_table <- function(fname){
   return(.res)
 }
 
+# Run情報の抽出
+# TrainingName, TrainingTime
+Run_info <- function(fname){
+  .dd <- NeoRun_data(fname)
+  .Tname <- str_split(.dd$base,",")[[1]][2]
+  .Ttime <- .dd$TrainMemo$TrainingTime # sec
+#  .d2 <- paste(.dtime %/% 3600,
+#         .dtime %% 3600 %/% 60,
+#         .dtime %% 3600 %% 60,sep=":")
+  return(list(.Tname,.Ttime))
+  }
 ##
 # Date to fname
 #
@@ -165,5 +175,15 @@ lap_table <- function(fname){
 # res <- Date2fname(.dd)
 # res    "20180401-20180401.csv"
 
-library(stringr)
-.dd %>% str_replace_all("-","") %>% paste(.,"-",.,".csv",sep="")
+#library(stringr)
+#.dd %>% str_replace_all("-","") %>% paste(.,"-",.,".csv",sep="")
+
+######
+# sec to H:M:S
+#####
+sec2HMS <- function(sec){
+  H <- sec %/%(60*60)
+  M <- sec %%(60*60)%/%60
+  S <- sec %%(60*60)%%60
+  return(sprintf("%02d:%02d:%02d",H,M,S))
+}
