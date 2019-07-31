@@ -1,7 +1,7 @@
 Package: NeoRun
 Type: Package
 Title: Convet NeoRun backup format data to dataframe
-Version: 0.1.3
+Version: 0.1.5
 Author: kazuo.fujimoto
 Maintainer: kazuo.fujimoto <kazuo.fujimoto2007@gmail.com>
 Description: More about what it does (maybe more than one line)
@@ -12,3 +12,7 @@ LazyData: true
 Suggests: knitr,readr,
     rmarkdown
 VignetteBuilder: knitr
+Imports:
+  dplyr,
+  readr,
+  stringr
