@@ -32,5 +32,10 @@ fname <- "20170801-20170801.csv"
 .res$base
 .res$Lap
 .res$Graph
+
+.res$TrainData
+.res$GPS
+.res$Tag
+.res$Memo
 >>>>>>> 3c96888c859b22235d47b2e66ba410e1396f8d3b
 }
